@@ -116,6 +116,57 @@ getFavouriteColor2(people3, 2);
 
 console.log(" Zadanie 5");
 
+const people22 = [
+  {
+    firstName: "Bartolomeo",
+    lastName: "Lozano",
+    nickname: "Rabona",
+    introduceYourself: "getFavouriteColor",
+  },
+  {
+    firstName: "Kamila",
+    lastName: "Nowak",
+    nickname: "Ruda",
+    introduceYourself: "getFavouriteColor",
+  },
+];
+
+const zadanie = people22
+  .filter((item) => {
+    let isElite = false;
+    let number = Math.floor(Math.random() * 101);
+    console.log(number);
+    for (let i = 2; i < number; i++) {
+      if (number % i === 0 || (number % 3 === 0 && number % 5 === 0)) {
+        isElite = true;
+      }
+    }
+    console.log(isElite);
+    if (isElite === false) {
+      return (
+        item.firstName.endsWith("a") ||
+        item.firstName.endsWith("k") ||
+        item.lastName.length > 6 ||
+        item.nickname.includes("a")
+      );
+    }
+    return item;
+  })
+  .map((people) => {
+    const newPeople = {};
+    for (let el in people) {
+      newPeople[people[el]] = el;
+      delete people.introduceYourself;
+      delete people.getFavouriteColor;
+    }
+    return newPeople;
+  })
+  .reduce((acc, value) => {
+    return { ...acc, ...value };
+  });
+
+console.log(zadanie);
+
 console.log("Zadanie 7");
 const nestedObject = {
   name: "Kamil",
